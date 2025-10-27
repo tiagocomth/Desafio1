@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-final class CoreDataPersistenceManager<T: NSManagedObject> {
+final class CoreDataPersistenceManager {
 
     let container: NSPersistentContainer
     

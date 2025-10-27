@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct Desafio1App: App {
     let viewModel: HomeViewModel
-    let coreDataManager: CoreDataPersistenceManager<BookEntity>
+    let coreDataManager: CoreDataPersistenceManager
     
     init() {
         coreDataManager = CoreDataPersistenceManager(modelName: "Desafio1")

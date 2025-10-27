@@ -14,7 +14,7 @@ struct ListEmptyView: View {
             Image(systemName: "tray")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 80, height: 80)
+                .frame(maxWidth: 80, maxHeight: 80)
                 .foregroundColor(.gray.opacity(0.4))
             
             Text("Nenhum item por aqui :(")

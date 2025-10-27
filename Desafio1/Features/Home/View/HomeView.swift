@@ -21,10 +21,9 @@ struct HomeView: View {
                         Button {
                             viewModel.booktoEdit = book
                         } label: {
-                            BookRowView(book: book, action: {
+                            BookRowView(book: book) {
                                 viewModel.toggleCompleted(for: book)
                             }
-                            )
                             .transition(.opacity.combined(with: .move(edge: .trailing)))
                             .animation(.easeInOut(duration: 0.3), value: viewModel.filteredBooks)
                         }
@@ -41,22 +40,16 @@ struct HomeView: View {
         .onAppear{
             viewModel.fetchBooks()
         }
-        .sheet(item: $viewModel.booktoEdit, content: { book in
-            AddItemView(
-                viewModel: {
-                    let vm = AddItemViewModel(persistenceManager:
-                            viewModel.persistenceManager)
-                vm.book = book
-                return vm
-            }()
-            )
+        .sheet(item: $viewModel.booktoEdit) { book in
+            AddItemView(viewModel: viewModel.createAddItemViewModel(book: book))
                 .presentationDetents([.medium])
                 .onDisappear {
                     withAnimation(.spring()) {
                         viewModel.fetchBooks()
                     }
             }
-        })
+        }
+        
         .sheet(isPresented: $viewModel.showNewAddSheet) {
             AddItemView(viewModel: AddItemViewModel(persistenceManager: viewModel.persistenceManager))
                 .presentationDetents([.medium])
@@ -75,13 +68,10 @@ struct HomeView: View {
             }
             ToolbarItem(placement: .secondaryAction) {
                 Menu {
-                    Button("Data") {
-                        viewModel.orderByDate()
-                    }
-                    Button("Prioridade") {
-                        viewModel
-                            .orderByPriority()
-                    }
+                    Button("Data", action: viewModel.orderByDate)
+                    
+                    Button("Prioridade", action: viewModel.orderByPriority)
+                    
                 } label: {
                     Text("Ordenar por")
                         .foregroundStyle(.primary)

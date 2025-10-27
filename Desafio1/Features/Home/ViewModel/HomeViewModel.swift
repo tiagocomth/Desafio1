@@ -85,4 +85,10 @@ class HomeViewModel: HomeViewModelProtocol, ObservableObject {
     func orderByPriority() {
         sortOption = .priority
     }
+    
+    func createAddItemViewModel(book: Book) -> AddItemViewModel {
+        let viewModel =  AddItemViewModel(persistenceManager: persistenceManager)
+        viewModel.book = book
+        return viewModel
+    }
 }
