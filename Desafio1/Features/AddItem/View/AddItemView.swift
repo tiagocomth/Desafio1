@@ -24,6 +24,7 @@ struct AddItemView: View {
             }
             
             AddItemButton(action: {
+                viewModel.saveBook()
                 dismiss()
             }, text: (viewModel.book != nil) ? "Atualizar" : "Adicionar")
 

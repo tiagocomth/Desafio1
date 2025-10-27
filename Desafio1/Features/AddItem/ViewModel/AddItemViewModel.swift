@@ -64,8 +64,10 @@ class AddItemViewModel: ObservableObject {
     func saveBook(){
         if book != nil {
             updateBook()
+            print("update")
         } else {
             addBook()
+            print("adicionado")
         }
     }
 }
