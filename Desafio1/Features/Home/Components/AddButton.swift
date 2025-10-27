@@ -16,7 +16,7 @@ struct AddButton: View {
             action()
         } label: {
             Image(systemName: "plus")
-                .tint(Color(.white))
+                .tint(.primary)
                 .font(.system(size: 15, weight: .bold))
                 .frame(width: 30, height: 30)
                 //.background(Color(.secondarySystemBackground))

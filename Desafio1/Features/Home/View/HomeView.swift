@@ -68,6 +68,7 @@ struct HomeView: View {
         }
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
+
                 AddButton {
                     viewModel.showNewAddSheet = true
                 }
@@ -83,6 +84,7 @@ struct HomeView: View {
                     }
                 } label: {
                     Text("Ordenar por")
+                        .foregroundStyle(.primary)
                 }
                 .foregroundStyle(.black)
 
